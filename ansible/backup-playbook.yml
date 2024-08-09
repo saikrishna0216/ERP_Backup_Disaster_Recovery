@@ -1,0 +1,14 @@
+
+---
+- name: ERP Backup
+  hosts: all
+  become: yes
+  tasks:
+    - name: Ensure backup directory exists
+      file:
+        path: "/var/backups/erp"
+        state: directory
+        mode: '0755'
+
+    - name: Perform backup
+      command: /usr/bin/backup-script.sh
